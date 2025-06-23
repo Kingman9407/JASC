@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JASC Jackson Arch Studio and Construction - 3D Visualization</title>
+  
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo4.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="logo4.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="logo4.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="theme-color" content="#008080" />
+  
+    <link rel="stylesheet" href="dist/output.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap" rel="stylesheet" />
+  
+   
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica', Arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow-y: auto;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.background-image {
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+}
+
+.content-overlay {
+    position: absolute;
+    top: 55vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 1200px;
+    background-color: teal;
+    padding: 40px 60px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.services-heading {
+    font-size: 42px;
+    color: beige;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.services-description {
+    font-size: 18px;
+    color: beige;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.blank-section {
+    background-color: beige;
+    padding: 100px 20px 60px;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+}
+
+.dummy-content {
+    max-width: 80%;
+    color: #444;
+    font-size: 16px;
+    line-height: 1.5;
+    padding-top: 80px;
+}
+
+.dummy-content h2 {
+    color: teal;
+    margin: 25px 0 10px 0;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.dummy-content h2:first-child {
+    margin-top: 0;
+}
+
+.dummy-content p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Page navigation styling */
+.page-navigation {
+  position: relative;
+  z-index: 10; /* Higher than the sticky image */
+  background-color: beige;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+
+.nav-arrows {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.arrow {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: teal;
+    color: beige;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.arrow:hover {
+    background-color: #006666;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.page-indicator {
+    font-size: 16px;
+    color: #444;
+    padding: 0 15px;
+}
+
+/* Service features styling */
+.service-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.feature-card {
+    background-color: beige;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid teal;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+.feature-icon {
+    color: teal;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.feature-title {
+    font-size: 20px;
+    color: teal;
+    margin-bottom: 10px;
+}
+
+.feature-description {
+    color: #555;
+    line-height: 1.5;
+}
+
+
+/* Responsive design for desktops */
+@media (min-width: 1024px) {
+    .service-features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feature-card {
+        padding: 25px;
+    }
+
+    .feature-icon {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .feature-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .feature-description {
+        line-height: 1.5;
+        font-size: 16px;
+    }
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 639px) {
+  .blank-section {
+    padding: 100px 0px 60px;
+  }
+  .content-overlay{
+    padding: 20px 30px;  
+  }
+  .service-features {
+    grid-template-columns: 1fr; /* Force single column on mobile */
+    gap: 20px;
+  }
+
+  .feature-card {
+    padding: 12px;
+    height: auto;
+  }
+
+  .feature-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .feature-title {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .feature-description {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .dummy-content {
+    padding-top: 40px;
+  }
+
+  .services-heading {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .services-description {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav">
+    <div class="logo">
+      <a href="index.html">
+        <img src="imgs/logo2c.png" alt="Logo">
+      </a>
+    </div>
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger-menu" aria-label="Toggle Menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="nav-links">
+      <!-- Our Projects dropdown -->
+      <div class="nav-item">
+        <a class="nav-link font-['Inter']">Our Projects</a>
+        <div class="sub-menu">
+          <div class="dropdown-inner">
+            <ul class="dropdown-links">
+              <li>
+                <a href="index.html">
+                  <div class="menu-item-title font-['Inter']">Home</div>
+                  <p class="menu-item-description font-['Inter']">Over all view of the company
+                  </p>
+                </a>
+              </li>
+              <li>
+                <a href="project1.html">
+                  <div class="menu-item-title font-['Inter']">Recent Work</div>
+                  <p class="menu-item-description font-['Inter']">Our latest design projects and innovations</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Services dropdown -->
+      <div class="nav-item">
+        <a class="nav-link font-['Inter']">Services</a>
+        <div class="sub-menu">
+          <div class="dropdown-inner">
+            <ul class="dropdown-links">
+              <li>
+                <a href="exterior.html">
+              <div class="menu-item-title font-['Inter']">Exterior</div>
+                  <p class="menu-item-description font-['Inter']">Create stunning curb appeal and outdoor spaces</p>
+                </a>
+              </li>
+              <li>
+                <a href="interior.html">
+                  <div class="menu-item-title font-['Inter']">Interior</div>
+                  <p class="menu-item-description font-['Inter']">Transform your indoor spaces with expert design</p>
+                </a>
+                </a>
+              </li>
+              <li>
+                <a href="commercial.html">
+                  <div class="menu-item-title font-['Inter']">Commercial</div>
+                  <p class="menu-item-description font-['Inter']">Professional spaces that enhance productivity</p>
+                </a>
+              </li>
+              <li>
+                <a href="3Dplan.html">
+                  <div class="menu-item-title font-['Inter']">3D Visualization</div>
+                  <p class="menu-item-description font-['Inter']">See your space before construction begins</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- About & Contact dropdown (MERGED) -->
+     <!-- About & Contact dropdown (MERGED) -->
+<div class="nav-item">
+  <a class="nav-link font-['Inter']">About & Contact</a>
+  <div class="sub-menu">
+    <div class="dropdown-inner">
+      <ul class="dropdown-links">
+        <li>
+          <a href="about.html">
+            <div class="menu-item-title font-['Inter']">Our Story</div>
+            <p class="menu-item-description font-['Inter']">Learn about our design philosophy and history</p>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html">
+            <div class="menu-item-title font-['Inter']">Office Location</div>
+            <p class="menu-item-description font-['Inter']">Visit our design studio in Pondicherry</p>
+          </a>
+        </li>
+        <li>
+          <a href="quote.html">
+            <div class="menu-item-title font-['Inter']">Request Quote</div>
+            <p class="menu-item-description font-['Inter']">Get a personalized quote for your design project</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</header>
+<div class="wrapper">
+    <!-- Background architectural image -->
+    <div class="background-image">
+        <img src="imgs/44.jpg" alt="3D Visualization">
+    </div>
+
+    <!-- Content overlay -->
+    <div class="content-overlay">
+        <h1 class="services-heading">Visualization</h1>
+        <p class="services-description">Helping clients see the future before construction begins with realistic visuals and virtual walkthroughs for any type of project.</p>
+    </div>
+
+    <!-- Beige content section -->
+    <div class="blank-section">
+        <div class="dummy-content">
+            <h2>Visual Confidence Across All Projects</h2>
+            <p>At JASC, our visualization services empower clients to make informed decisions with clarity. From residential villas to commercial complexes, we craft visuals that convey the full intent of a space its design, structure, and impact—before ground is ever broken.</p>
+
+            <h2>Clarity in Design and Construction</h2>
+            <p>Our 3D modeling supports the entire project lifecycle. Whether you're refining a concept, reviewing materials, or preparing presentations, these tools bridge the gap between vision and reality ensuring alignment across design and construction teams.</p>
+
+            <h2>Experience the Space Before It's Built</h2>
+            <p>We offer fully navigable virtual spaces, where lighting, textures, scale, and environment are simulated to reflect real-world results. These experiences are ideal for showcasing commercial environments, homes, and hospitality venues with precision and immersion.</p>
+
+            <div class="service-features">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-cube"></i></div>
+                    <h3 class="feature-title">Project Wide 3D Modeling</h3>
+                    <p class="feature-description">From floor plans to final form, we model entire structures residential or commercial capturing layouts, materials, and context for true-to-life previews.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                    <h3 class="feature-title">Virtual Previews</h3>
+                    <p class="feature-description">Walk through future homes, offices, restaurants, or storefronts to evaluate spatial flow, lighting, and design intent before the build begins.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3 class="feature-title">Design Presentation Tools</h3>
+                    <p class="feature-description">Our visuals are perfect for client approvals, stakeholder pitches, and investor presentations turning abstract ideas into tangible experiences.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation arrows -->
+    <div class="page-navigation">
+        <div class="nav-arrows">
+            <a href="commercial.html" class="arrow" title="Previous Page"><i class="fas fa-chevron-left"></i></a>
+            <span class="page-indicator">Page 4 of 4</span>
+            <a href="exterior.html" class="arrow" title="Home Page"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+</div>
+
+     <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-info">
+          <div class="footer-logo">
+            <img src="imgs/logo3.png" alt="Logo">
+          </div>
+          <p>Creating beautiful spaces for your life and work.</p>
+        </div> 
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> lawspet, Pondicherry
+          </p>
+          <p><i class="fas fa-phone"></i>+91 81224 50867</p>
+          <p><i class="fas fa-envelope"></i>jasc.Pondicherry@gmail.com</p>
+        </div>
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="mailto:jasc.Pondicherry@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/+91 81224 50867" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/jacksonarchstudio_construction?igsh=cWo5NnpzeWZvemc=" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/@jacksonarchstudio_construction?si=Qe8LPE82uFfYf14O" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.behance.net/jacksonstudio1" class="social-icon"><i class="fab fa-behance"></i></a>
+            
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 JASC . All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script src="sscript.js"></script>
+</body>
+</html>

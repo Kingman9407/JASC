@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote - JASC Jackson Arch Studio and Construction</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo4.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo4.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo4.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#008080">
+    
+    <link rel="stylesheet" href="dist/output.css">
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for teal and beach color scheme */
+        :root {
+            --teal-color: #008080;
+            --teal-dark: #006666;
+            --teal-light: #99cccc;
+            --sand-color: #f5e1c0;
+            --sand-dark: #e6cb9e;
+            --sand-light: beige;
+        }
+        
+        .form-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+           margin: 80px auto 40px auto; /* Increased vertical margin */
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background-color: var(--teal-color);
+            color: white;
+            padding: 40px 30px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .form-header h1 {
+            color: beige;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-header p {
+            color: var(--sand-light);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .form-body {
+            padding: 30px;
+            width: 60%;
+            background-color: var(--sand-light);
+        }
+        
+        .form-field {
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 16px;
+            border: 1px solid var(--sand-dark);
+            border-radius: 4px;
+            transition: border 0.2s;
+            background-color: white;
+        }
+        
+        .form-input:focus {
+            border: 2px solid var(--teal-color);
+            outline: none;
+        }
+        
+        .form-label {
+            color: var(--teal-dark);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23008080' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 24px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        .form-button {
+            background-color: var(--teal-color);
+            color: beige;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .form-button:hover {
+            background-color: var(--teal-dark);
+        }
+        
+        .required-field::after {
+            content: ' *';
+            color: #d93025;
+        }
+        
+        /* Success message styles */
+        .success-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+                margin: 50px auto; /* Adjusted for mobile */
+            }
+            
+            .form-header, .form-body {
+                width: 100%;
+            }
+            
+            .form-header {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="font-['Inter'] bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navbar from previous HTML -->
+  <header class="topbar">
+  <nav class="nav">
+    <div class="logo">
+      <a href="index.html">
+        <img src="imgs/logo2c.png" alt="Logo">
+      </a>
+    </div>
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger-menu" aria-label="Toggle Menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="nav-links">
+      <!-- Our Projects dropdown -->
+      <div class="nav-item">
+        <a class="nav-link font-['Inter']">Our Projects</a>
+        <div class="sub-menu">
+          <div class="dropdown-inner">
+            <ul class="dropdown-links">
+              <li>
+                <a href="index.html">
+                  <div class="menu-item-title font-['Inter']">Home</div>
+                  <p class="menu-item-description font-['Inter']">Over all view of the company
+                  </p>
+                </a>
+              </li>
+              <li>
+                <a href="project1.html">
+                  <div class="menu-item-title font-['Inter']">Recent Work</div>
+                  <p class="menu-item-description font-['Inter']">Our latest design projects and innovations</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Services dropdown -->
+      <div class="nav-item">
+        <a class="nav-link font-['Inter']">Services</a>
+        <div class="sub-menu">
+          <div class="dropdown-inner">
+            <ul class="dropdown-links">
+              <li>
+                <a href="exterior.html">
+              <div class="menu-item-title font-['Inter']">Exterior</div>
+                  <p class="menu-item-description font-['Inter']">Create stunning curb appeal and outdoor spaces</p>
+                </a>
+              </li>
+              <li>
+                <a href="interior.html">
+                  <div class="menu-item-title font-['Inter']">Interior</div>
+                  <p class="menu-item-description font-['Inter']">Transform your indoor spaces with expert design</p>
+                </a>
+                </a>
+              </li>
+              <li>
+                <a href="commercial.html">
+                  <div class="menu-item-title font-['Inter']">Commercial</div>
+                  <p class="menu-item-description font-['Inter']">Professional spaces that enhance productivity</p>
+                </a>
+              </li>
+              <li>
+                <a href="3Dplan.html">
+                  <div class="menu-item-title font-['Inter']">3D Visualization</div>
+                  <p class="menu-item-description font-['Inter']">See your space before construction begins</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- About & Contact dropdown (MERGED) -->
+     <!-- About & Contact dropdown (MERGED) -->
+<div class="nav-item">
+  <a class="nav-link font-['Inter']">About & Contact</a>
+  <div class="sub-menu">
+    <div class="dropdown-inner">
+      <ul class="dropdown-links">
+        <li>
+          <a href="about.html">
+            <div class="menu-item-title font-['Inter']">Our Story</div>
+            <p class="menu-item-description font-['Inter']">Learn about our design philosophy and history</p>
+          </a>
+        </li>
+        <li>
+          <a href="contact.html">
+            <div class="menu-item-title font-['Inter']">Office Location</div>
+            <p class="menu-item-description font-['Inter']">Visit our design studio in Pondicherry</p>
+          </a>
+        </li>
+        <li>
+          <a href="quote.html">
+            <div class="menu-item-title font-['Inter']">Request Quote</div>
+            <p class="menu-item-description font-['Inter']">Get a personalized quote for your design project</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</header>
+    <!-- Get Quote Section - Split with teal and beach colors -->
+    <main class="flex-grow w-full px-4 pt-32 pb-20 flex items-center justify-center bg-[var(--sand-light)]">
+        <section class="form-container">
+            <div class="form-header">
+                <h1>Request a Quote</h1>
+                <p>Tell us about your project and we'll get back to you with a comprehensive quote tailored to your needs.</p>
+                <p class="mt-4">Let our experts help bring your vision to life with our award-winning design and construction services.</p>
+            </div>
+            <div class="form-body">
+                <div id="success-message" class="success-message">
+                    Your quote request has been sent successfully! We'll get back to you soon.
+                </div>
+                
+                <form id="quote-form" action="https://formsubmit.co/jasc.Pondicherry@gmail.com" method="POST">
+                    <!-- FormSubmit configuration -->
+                    <input type="hidden" name="_subject" value="New Quote Request from JASC Website">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://your-website-url.com/thank-you.html">
+                    
+                    <div class="form-field">
+                        <label for="name" class="form-label required-field">Full Name</label>
+                        <input type="text" id="name" name="name" required class="form-input">
+                    </div>
+                    <div class="form-field">
+                        <label for="email" class="form-label required-field">Email Address</label>
+                        <input type="email" id="email" name="email" required class="form-input">
+                    </div>
+                    <div class="form-field">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-input">
+                    </div>
+                    <div class="form-field">
+                        <label for="service" class="form-label">Service of Interest</label>
+                        <select id="service" name="service" class="form-input form-select">
+                            <option value="">Select a Service</option>
+                            <option value="exterior">Exterior Work</option>
+                            <option value="interior">Interior Work</option>
+                            <option value="commercial">Commercial Work</option>
+                            <option value="3d">3D Visualization</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="details" class="form-label">Project Details</label>
+                        <textarea id="details" name="details" rows="6" class="form-input form-textarea" 
+                            placeholder="Describe your project requirements, including size, location, timeline, and budget expectations..."></textarea>
+                    </div>
+                    <div class="form-field">
+                        <button type="submit" class="form-button">Submit Quote Request</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer from previous HTML -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="imgs/logo3.png" alt="Logo">
+                </div>
+                <p>Creating beautiful spaces for your life and work.</p>
+            </div> 
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> lawspet, Pondicherry
+                </p>
+                <p><i class="fas fa-phone"></i>+91 81224 50867</p>
+                <p><i class="fas fa-envelope"></i>jasc.Pondicherry@gmail.com</p>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="mailto:jasc.Pondicherry@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/+91 81224 50867" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/jacksonarchstudio_construction?igsh=cWo5NnpzeWZvemc=" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@jacksonarchstudio_construction?si=Qe8LPE82uFfYf14O" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.behance.net/jacksonstudio1" class="social-icon"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 JASC . All Rights Reserved.</p>
+        </div>
+    </footer>
+  
+    <!-- Link to External JavaScript File -->
+    <script src="sscript.js"></script>
+    
+    <!-- Form submission JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('quote-form');
+            const successMessage = document.getElementById('success-message');
+            
+            // Show success message when form is submitted
+            form.addEventListener('submit', function(event) {
+                // Form will submit normally with the formsubmit.co action
+                // This just shows a local success message
+                
+                // If you want to handle submission with JavaScript instead:
+                // Uncomment the below lines and remove the form action
+                /*
+                event.preventDefault();
+                
+                // Submit form data
+                const formData = new FormData(form);
+                
+                fetch('https://formsubmit.co/jasc.Pondicherry@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    successMessage.style.display = 'block';
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was a problem submitting your form. Please try again.');
+                });
+                */
+            });
+        });
+    </script>
+</body>
+</html>
